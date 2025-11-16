@@ -1,7 +1,7 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        map<char,int> mpp;  // storing the element and its index
+        map<int,int> mpp;  // storing the element and its index
         int maxlen=0;
         int right=0;
         int n=s.size();
