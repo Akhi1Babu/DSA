@@ -1,17 +1,17 @@
 class Solution {
-private:
-    int findmajorityfreq(map <char,int> mpp){
-        int maxfreq=0;
-        char maxchar;
-        for(auto &it : mpp){
-            if(it.second>maxfreq){
-                maxfreq=it.second;
-                maxchar=it.first;
+// private:
+//     int findmajorityfreq(map <char,int> mpp){
+//         int maxfreq=0;
+//         char maxchar;
+//         for(auto &it : mpp){
+//             if(it.second>maxfreq){
+//                 maxfreq=it.second;
+//                 maxchar=it.first;
 
-            }
-        }
-        return maxfreq;
-    }
+//             }
+//         }
+//         return maxfreq;
+//     }
 public:
     int characterReplacement(string s, int k) {
         map<char, int> mpp;
@@ -19,19 +19,20 @@ public:
         int right = 0;
        int n = s.size();
         int maxlen=0;
+        int maxfreq=0;
         int nonsameelement=0;
         while (right < n) {
+
              mpp[s[right]]++;
-            int maxfreq = findmajorityfreq(mpp);
-            int nonsameelement=(right-left+1)-maxfreq;
+            maxfreq = max(maxfreq,mpp[s[right]]);
+           // (right-left+1)-maxfreq   -> nosameelement
            
-            if(nonsameelement>k){
+            if( (right-left+1)-maxfreq>k){
                 mpp[s[left]]--;
                 
                 left++;
-                
             }
-            if(nonsameelement<=k){
+            if( (right-left+1)-maxfreq<=k){
                 maxlen=max(maxlen,right-left+1);
             }
            
