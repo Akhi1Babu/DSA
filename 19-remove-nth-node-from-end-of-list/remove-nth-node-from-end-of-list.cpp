@@ -24,12 +24,12 @@ public:
                 return head->next;
                 
             }
-            if(fast!=nullptr){
+            
             while(fast->next!=nullptr){
                 fast=fast->next;
                 slow=slow->next;
             }
-            }
+            
             
             ListNode * deletingnode=slow->next;
             slow->next=slow->next->next;
