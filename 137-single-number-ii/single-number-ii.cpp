@@ -7,7 +7,7 @@ public:
         int n=nums.size();
         for(int i=0;i<n;i++){
             one=(one^nums[i] & ~(two));
-            two= (two^nums[i] & ~(one));
+            two= (two^nums[i] & (one));
         }
         return one;
         
