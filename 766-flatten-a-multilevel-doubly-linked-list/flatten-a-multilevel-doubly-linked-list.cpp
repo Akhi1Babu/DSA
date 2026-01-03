@@ -43,9 +43,9 @@ public:
             resulttemp=resulttemp->next;
 
         }
-        Node* head2=resulthead->next;
+        Node* head2=resulthead->next;  // done this to make it as a valid double linked list..[first node's prev should be null]
         head2->prev=nullptr;
-        return head2;
+        return head2;  
         
     }
 };
