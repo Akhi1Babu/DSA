@@ -2,11 +2,13 @@ class Solution {
 public:
     int firstUniqChar(string s) {
         map<char,int> mpp;
-        for(int i=0;i<s.size();i++){
+         int n=s.size();
+        for(int i=0;i<n;i++){
             mpp[s[i]]++;
         }
         int index=-1;
-        for(int i=s.size()-1;i>=0;i--){
+       
+        for(int i=n-1;i>=0;i--){
             if(mpp[s[i]]==1){
                 index=i;
 
