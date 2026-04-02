@@ -9,24 +9,20 @@
  * };
  */
 class Solution {
-private:
-    ListNode *reverseLinkedList(ListNode* head,ListNode * temp){
-        if(temp->next==nullptr){
-            return temp;
-        }
-        ListNode* newhead=reverseLinkedList(head,temp->next);
-        ListNode* front=temp->next;
-        front->next=temp;
-        temp->next=nullptr;
-        return newhead;
-    }
 public:
     ListNode* reverseList(ListNode* head) {
-        // we can solve it by recursion...
-        if( head==NULL || head->next==NULL){
+        //solving using recursion..
+        if(head==NULL){
             return head;
         }
-        ListNode * temp=head;
-        return reverseLinkedList(head,temp);
+        if(head!=NULL && head->next==NULL){
+            return head;
+        }
+        ListNode*  newhead=reverseList(head->next);
+        ListNode* front=head->next;
+        front->next=head;
+        head->next=nullptr;
+        return newhead;
+        
     }
 };
