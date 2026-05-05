@@ -11,54 +11,33 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-         ListNode * temp1= l1;
-        ListNode * temp2=l2;
-        ListNode * resulthead= new ListNode(0,nullptr);
-        ListNode * resulttemp= resulthead;
-
+       
         int carry=0;
-        while(temp1!=NULL && temp2 !=NULL){
-           
 
-            int sum=0;
-            int data=0;
-           
-            sum=temp1->val+temp2->val;
-            data=(sum+carry)%10;
-            carry=(sum+carry)/10;
-             ListNode * newnode=new ListNode(data,nullptr);
-             resulttemp->next=newnode;
-             resulttemp=resulttemp->next;
-             temp1=temp1->next;
-             temp2=temp2->next;
-
-
+        ListNode* tempHead=new ListNode();
+        ListNode* temp=tempHead;
+        while(l1!=NULL || l2!=NULL){
+             int sum=0;
+            if(l1!=NULL){
+                sum+=l1->val;
+                l1=l1->next;
+            }
+            if(l2!=NULL){
+                sum+=l2->val;
+                l2=l2->next;
+            }
+            sum+=carry;
+            carry=sum/10;
+            ListNode* newnode= new ListNode(sum%10);
+            temp->next=newnode;
+            temp=temp->next;
             
         }
-        while(temp1!=NULL){
-            int data=(temp1->val+carry)%10;
-            carry=(temp1->val+carry)/10;
-            
-            ListNode * newnode=new ListNode(data,nullptr);
-            resulttemp->next=newnode;
-             resulttemp=resulttemp->next;
-             temp1=temp1->next;
-            
+        if(carry==1){
+            ListNode* newnode=new ListNode(1);
+            temp->next=newnode;
         }
-        while(temp2!=NULL){
-              int data=(temp2->val+carry)%10;
-            carry=(temp2->val+carry)/10;
-            ListNode * newnode=new ListNode(data,nullptr);
-            resulttemp->next=newnode;
-             resulttemp=resulttemp->next;
-             temp2=temp2->next;
-        }
-        if(carry>0){
-            ListNode * newnode=new ListNode(carry,nullptr);
-            resulttemp->next=newnode;
-            resulttemp=resulttemp->next;
-        }
-        return resulthead->next;
-
+        return tempHead->next;
+        
     }
 };
